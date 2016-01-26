@@ -1,19 +1,28 @@
+---
 after_success:
-- npm run semantic-release
-- npm run report-coverage
+  - "npm run semantic-release"
+  - "npm run report-coverage"
 before_install:
-- npm i -g npm@^2.0.0
+  - "npm i -g npm@^2.0.0"
 before_script:
-- npm prune
+  - "npm prune"
 branches:
   except:
-  - "/^v\\d+\\.\\d+\\.\\d+$/"
+    - /^v\d+\.\d+\.\d+$/
 cache:
   directories:
-  - node_modules
+    - node_modules
+deploy:
+  api_key:
+    secure: kcnHmOJnK0JwxjVL+bzJGFitaLFDkXx57sT7Mucgi2fBocTQVNCXMNkEH6ADhdzrgEsysg+Rn6+Xa3DxN7deHWJ5NOkPxM5stzvHx609MLTkXezRQhU+WuboYe6K5aWQKz2ovFmUNykBW+DJjjgepl2M3nUSgb0R+jZdhM6jgzyD+P5OQGzGOB5Bhw0iNOZBoAjP7bqdERV1skdp8+E09ZMLQqJxY+51/4skslxrUq3HSbBPIV9AHWtW75mthsbpOWBN1drs/OH60MPeTF+JRq8mgPI0XDsd7lHO1Fa4jo7vQWEP+hq1svgcU3/U64jGGfgx5QaaURwfhItHjPrANcb3JsH5J1mdtLVVTdbsNp070BAhqgdK3iJQ3Z+WOyrJGZYdAAjiCmTULx6lFuCg8VHKHe7aPwDI0cJ/J19CJ1yaAFUwRklG67TTv0IOxmEtCzd1fQujvWWVx7o9JUuRl9FBQw0fT+i++nqSAxNM4yP8+FiRphYWOgHxy+vfOgqyySbE1ezS+De9VzIcC+NxSZI82TwTIBQn7ic8qfrFsJd/a0dcQr0wsNODGx5S6a/MBizYN+QtUnjcOL2Art7lVMMLi5sPKRN8VebWWUx01Nmh58XObjB/Z3IdkaBZFRKF4b9R758JRvPynnABQhynF5Mr8NF6XUWcgSFk7YWHU7U=
+  email: simon@miniarray.com
+  provider: npm
+  true:
+    repo: miniArray/discoid
+    tags: true
 language: node_js
 node_js:
-- '4'
+  - "4"
 notifications:
   email: false
   webhooks:
@@ -21,16 +30,8 @@ notifications:
     on_start: never
     on_success: change
     urls:
-    - https://webhooks.gitter.im/e/7c4a7890b7af25bf8932
+      - "https://webhooks.gitter.im/e/aff5331c1dd1edfb9397"
 script:
-- npm run test:single
-- npm run check-coverage
+  - "npm run test:single"
+  - "npm run check-coverage"
 sudo: false
-deploy:
-  provider: npm
-  email: simon@miniarray.com
-  api_key:
-    secure: kcnHmOJnK0JwxjVL+bzJGFitaLFDkXx57sT7Mucgi2fBocTQVNCXMNkEH6ADhdzrgEsysg+Rn6+Xa3DxN7deHWJ5NOkPxM5stzvHx609MLTkXezRQhU+WuboYe6K5aWQKz2ovFmUNykBW+DJjjgepl2M3nUSgb0R+jZdhM6jgzyD+P5OQGzGOB5Bhw0iNOZBoAjP7bqdERV1skdp8+E09ZMLQqJxY+51/4skslxrUq3HSbBPIV9AHWtW75mthsbpOWBN1drs/OH60MPeTF+JRq8mgPI0XDsd7lHO1Fa4jo7vQWEP+hq1svgcU3/U64jGGfgx5QaaURwfhItHjPrANcb3JsH5J1mdtLVVTdbsNp070BAhqgdK3iJQ3Z+WOyrJGZYdAAjiCmTULx6lFuCg8VHKHe7aPwDI0cJ/J19CJ1yaAFUwRklG67TTv0IOxmEtCzd1fQujvWWVx7o9JUuRl9FBQw0fT+i++nqSAxNM4yP8+FiRphYWOgHxy+vfOgqyySbE1ezS+De9VzIcC+NxSZI82TwTIBQn7ic8qfrFsJd/a0dcQr0wsNODGx5S6a/MBizYN+QtUnjcOL2Art7lVMMLi5sPKRN8VebWWUx01Nmh58XObjB/Z3IdkaBZFRKF4b9R758JRvPynnABQhynF5Mr8NF6XUWcgSFk7YWHU7U=
-  on:
-    tags: true
-    repo: miniArray/discoid
