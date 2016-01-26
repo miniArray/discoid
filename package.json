@@ -1,0 +1,47 @@
+{
+  "name": "discoid",
+  "version": "0.0.0",
+  "description": "A simple utility to retrieve disk info",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bluebird": "^3.1.1",
+    "lodash": "^4.0.0"
+  },
+  "scripts": {
+    "commit": "git-cz",
+    "check-coverage": "istanbul check-coverage --branches 50 --statements 80 --lines 80 --functions 70",
+    "report-coverage": "codecov",
+    "test": "mocha test/*.js -w -c",
+    "test:single": "istanbul cover _mocha -- -R spec",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.2.0",
+    "codecov": "^1.0.1",
+    "commitizen": "^2.5.0",
+    "cz-conventional-changelog": "^1.1.5",
+    "ghooks": "^1.0.3",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.3.4",
+    "semantic-release": "^4.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miniarray/discoid.git"
+  },
+  "keywords": [
+    "disk",
+    "windows",
+    "system"
+  ],
+  "author": "Simon W. Jackson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miniarray/discoid/issues"
+  },
+  "homepage": "https://github.com/miniarray/discoid#readme"
+}
