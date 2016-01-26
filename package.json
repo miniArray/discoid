@@ -11,6 +11,7 @@
     "lodash": "^4.0.0"
   },
   "scripts": {
+    "commit:all": "git add . && git-cz",
     "commit": "git-cz",
     "check-coverage": "istanbul check-coverage --branches 50 --statements 80 --lines 80 --functions 70",
     "report-coverage": "codecov",
@@ -31,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miniarray/discoid.git"
+    "url": "git+https://github.com/miniArray/discoid.git"
   },
   "keywords": [
     "disk",
@@ -41,7 +42,15 @@
   "author": "Simon W. Jackson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/miniarray/discoid/issues"
+    "url": "https://github.com/miniArray/discoid/issues"
   },
-  "homepage": "https://github.com/miniarray/discoid#readme"
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "pre-commit": "npm run test:single && npm run check-coverage"
+    }
+},
+  "homepage": "https://github.com/miniArray/discoid#readme"
 }
