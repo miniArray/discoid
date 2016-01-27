@@ -1,4 +1,3 @@
-import Promise from 'bluebird'
 import chai from "chai"
 import {expect} from "chai";
 import chaiAsPromised from "chai-as-promised"
