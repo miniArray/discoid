@@ -1,16 +1,14 @@
-"use strict";
+import Promise from 'bluebird'
+import chai from "chai"
+import {expect} from "chai";
+import chaiAsPromised from "chai-as-promised"
+import path from "path"
+import fs from "fs"
 
-let Promise = require('bluebird');
-let chai = require("chai");
-let expect = chai.expect;
-let chaiAsPromised = require("chai-as-promised");
-let path = require("path");
-let fs = require("fs");
+import mountvol from '../lib/mountvol'
 
 chai.should();
 chai.use(chaiAsPromised);
-
-let mountvol = require('../lib/mountvol');
 
 describe('mountvol', () => {
     describe('#init()', () => {

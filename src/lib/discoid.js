@@ -1,6 +1,4 @@
-"use strict";
-
-let mountvol = require('./mountvol');
+import mountvol from './mountvol';
 
 let discoid = {
     list: function() {

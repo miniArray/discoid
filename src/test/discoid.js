@@ -1,14 +1,12 @@
-"use strict";
+import Promise from 'bluebird'
+import chai from "chai"
+import chaiAsPromised from "chai-as-promised"
+import path from "path"
 
-var Promise = require('bluebird');
-var chai = require("chai");
-var chaiAsPromised = require("chai-as-promised");
-var path = require("path");
+import discoid from '../lib/discoid'
 
 chai.should();
 chai.use(chaiAsPromised);
-
-var discoid = require('../lib/discoid');
 
 describe('discoid', () => {
     describe('#list()', () => {

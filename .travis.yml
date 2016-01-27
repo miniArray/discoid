@@ -34,4 +34,5 @@ notifications:
 script:
   - "npm run test:single"
   - "npm run check-coverage"
+  - "npm run build"
 sudo: false

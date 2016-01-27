@@ -1,24 +1,19 @@
-"use strict";
-
-let Promise = require('bluebird');
-let _ = require('lodash');
-let util = require('util');
+import _ from 'lodash'
+import util from 'util'
 
 /**
  * Initializes the mountvol constructor.
  * @constructor
  * @param {string} listing - Provive command results manually (ex: testing)
  */
-let mountvol = function(listing) {
+async function mountvol(listing) {
     let results;
 
-    if (!listing) return exec().then(parse);
+    if (!listing)
+        listing = await exec();
 
-    results = parse(listing);
-    return Promise.resolve(results);
+    return parse(listing);
 };
-
-module.exports = mountvol;
 
 /**
  * Execute the mountvol application.
@@ -115,3 +110,5 @@ let parseMount = function(mount) {
     if (matches === null) return null;
     else return matches[0];
 }
+
+module.exports = mountvol;
