@@ -6,3 +6,5 @@ async function run() {
 }
 
 run();
+
+discoid.list().then(console.log)
