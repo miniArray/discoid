@@ -79,6 +79,8 @@ function getHost (path) {
 }
 
 function parseNetworkResults (obj) {
+  if (!('json' in obj)) return [] // No network volumes mounts
+
   if (!('0' in obj.json))
     obj.json = { '0': obj.json }
 
