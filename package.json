@@ -1,6 +1,6 @@
 {
   "name": "discoid",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A simple utility to retrieve disk info",
   "main": "dist/index.js",
   "directories": {
@@ -15,7 +15,6 @@
     "release": "dotenv release-it",
     "example": "babel-node src/example/index.js",
     "prebuild": "rm -rf build && mkdir build",
-    "//build": "babel src -d dist",
     "postbuild": "",
     "report-coverage": "codecov",
     "test": "exit 0 # mocha ./src/lib/*.test.js --compilers js:babel-core/register",
