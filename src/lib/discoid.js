@@ -1,5 +1,7 @@
-import mountvol from './mountvol'
-import ps from 'windows-powershell'
+// import mountvol from './mountvol'
+// import ps from 'windows-powershell'
+const mountvol = require('./mountvol')
+const ps = require('windows-powershell')
 
 // Network Mounts
 // Get-WmiObject Win32_LogicalDisk | where -property DriveType -eq 4 | convertto-json
@@ -7,7 +9,8 @@ import ps from 'windows-powershell'
 // Local Volumes
 // get-volume | convertto-json
 
-export async function list ({ local = true, network = true } = {}) {
+// export async function list ({ local = true, network = true } = {}) {
+exports.list = async function list ({ local = true, network = true } = {}) {
   const isWin = /^win/.test(process.platform)
   let results = []
 
@@ -38,7 +41,8 @@ export async function list ({ local = true, network = true } = {}) {
   return Promise.resolve([])
 }
 
-export async function fromPath (path) {
+// export async function fromPath (path) {
+exports.fromPath = async function fromPath(path) {
   const isWin = /^win/.test(process.platform)
 
   return Promise.resolve([])
