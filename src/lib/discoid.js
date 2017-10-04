@@ -1,5 +1,3 @@
-// import mountvol from './mountvol'
-// import ps from 'windows-powershell'
 const mountvol = require('./mountvol')
 const ps = require('windows-powershell')
 
@@ -10,7 +8,7 @@ const ps = require('windows-powershell')
 // get-volume | convertto-json
 
 // export async function list ({ local = true, network = true } = {}) {
-exports.list = async function list ({ local = true, network = true } = {}) {
+exports.list = async function list({ local = true, network = true } = {}) {
   const isWin = /^win/.test(process.platform)
   let results = []
 
@@ -19,20 +17,14 @@ exports.list = async function list ({ local = true, network = true } = {}) {
       const obj = await getLocalMounts()
       const discsLocal = parseLocalResults(obj)
 
-      results = [
-        ...results,
-        ...discsLocal
-      ]
+      results = [...results, ...discsLocal]
     }
 
     if (network) {
       const obj = await getNetworkMounts()
       const discsNetwork = parseNetworkResults(obj)
 
-      results = [
-        ...results,
-        ...discsNetwork
-      ]
+      results = [...results, ...discsNetwork]
     }
 
     return results
@@ -48,7 +40,7 @@ exports.fromPath = async function fromPath(path) {
   return Promise.resolve([])
 }
 
-function getNetworkMounts () {
+function getNetworkMounts() {
   const cmd = ps.pipe(
     'Get-WmiObject Win32_LogicalDisk',
     'where -property DriveType -eq 4'
@@ -57,36 +49,28 @@ function getNetworkMounts () {
   return ps.shell(ps.toJson(cmd))
 }
 
-function getLocalMounts () {
-  const cmd = ps.pipe(
-    'get-volume',
-    'where -property DriveType -ne 9999'
-  )
+function getLocalMounts() {
+  const cmd = ps.pipe('get-volume', 'where -property DriveType -ne 9999')
 
   return ps.shell(ps.toJson(cmd))
 }
 
-function getUUIDFromQualifiers (qualifiers) {
-  return trimTrailingSlash(
-    qualifiers
-      .filter(q => q.Name === 'UUID')[0]
-      .Value
-  )
+function getUUIDFromQualifiers(qualifiers) {
+  return trimTrailingSlash(qualifiers.filter(q => q.Name === 'UUID')[0].Value)
 }
 
-function getUUIDFromPath (path) {
+function getUUIDFromPath(path) {
   return path.split('\\')[3].slice(7, -2)
 }
 
-function getHost (path) {
+function getHost(path) {
   return path.split('\\')[2]
 }
 
-function parseNetworkResults (obj) {
+function parseNetworkResults(obj) {
   if (!('json' in obj)) return [] // No network volumes mounts
 
-  if (!('0' in obj.json))
-    obj.json = { '0': obj.json }
+  if (!('0' in obj.json)) obj.json = { '0': obj.json }
 
   return Object.entries(obj.json).map(([key, val]) => {
     return {
@@ -102,9 +86,8 @@ function parseNetworkResults (obj) {
   })
 }
 
-function parseLocalResults (obj) {
-  if (!('0' in obj.json))
-    obj.json = { '0': obj.json }
+function parseLocalResults(obj) {
+  if (!('0' in obj.json)) obj.json = { '0': obj.json }
 
   const discs = Object.entries(obj.json)
     .map(([key, val]) => val)
@@ -124,12 +107,10 @@ function parseLocalResults (obj) {
   })
 }
 
-function trimTrailingSlash (path) {
-  return path
-    .slice(0, -1)
-    .slice(1)
+function trimTrailingSlash(path) {
+  return path.slice(0, -1).slice(1)
 }
 
-function filterReserved (disc) {
+function filterReserved(disc) {
   return disc.fileSystemLabel !== 'System Reserved'
 }
