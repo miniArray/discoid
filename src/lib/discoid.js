@@ -8,7 +8,7 @@ const ps = require('windows-powershell')
 // get-volume | convertto-json
 
 // export async function list ({ local = true, network = true } = {}) {
-exports.list = async function list({ local = true, network = true } = {}) {
+async function list({ local = true, network = true } = {}) {
   const isWin = /^win/.test(process.platform)
   let results = []
 
@@ -34,7 +34,7 @@ exports.list = async function list({ local = true, network = true } = {}) {
 }
 
 // export async function fromPath (path) {
-exports.fromPath = async function fromPath(path) {
+async function fromPath(path) {
   const isWin = /^win/.test(process.platform)
 
   return Promise.resolve([])
@@ -113,4 +113,9 @@ function trimTrailingSlash(path) {
 
 function filterReserved(disc) {
   return disc.fileSystemLabel !== 'System Reserved'
+}
+
+modules.exports = {
+  list,
+  fromPath
 }
